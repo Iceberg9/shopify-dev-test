@@ -1,0 +1,14 @@
+dev:
+  password: 38a7c15bf24399dae41cee16a7145c21
+  theme_id: "74800398439"
+  store: dev-awesome-store.myshopify.com
+development:
+  password: 38a7c15bf24399dae41cee16a7145c21
+  theme_id: "74800398439"
+  store: dev-awesome-store.myshopify.com
+live:
+  password: 38a7c15bf24399dae41cee16a7145c21
+  theme_id: "74800529511"
+  store: dev-awesome-store.myshopify.com
+  ignore_files:
+  - config/settings_data.json
