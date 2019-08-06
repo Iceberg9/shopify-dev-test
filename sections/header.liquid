@@ -54,7 +54,7 @@
 
 </header>
 
-  <nav role="navigation">
+  {% comment %} <nav role="navigation">
     <ul>
       {% for link in linklists[section.settings.main_linklist].links %}
         {% if link.links != blank %}
@@ -89,7 +89,7 @@
       {% endfor %}
     </ul>
   </nav>
-</div>
+</div> {% endcomment %}
 
 {% schema %}
   {
