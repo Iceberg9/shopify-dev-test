@@ -4,24 +4,30 @@
   </div>
 </div>
 
-<div class="grid-wrapper-coll">
+{% comment %} <div class="grid-wrapper-coll">
   <div class="grid-collection">
     {{ 'collection--card-3.png' | asset_url | img_tag }}
-    {% comment %} <p class="boots">AWESOME HATS</p> {% endcomment %}
+    <p class="boots">AWESOME HATS</p>
   </div>
   <div class="grid-collection">
     {{ 'collection--card-2.png' | asset_url | img_tag }}
-    {% comment %} <p class="boots">AWESOME BOOTS</p> {% endcomment %}
+    <p class="boots">AWESOME BOOTS</p>
   </div>
   <div class="grid-collection">
     {{ 'collection--card-1.png' | asset_url | img_tag }}
-    {% comment %} <p class="sunglass">AWESOME SUNGLASS</p> {% endcomment %}
+    <p class="sunglass">AWESOME SUNGLASS</p>
+  </div>
+</div> {% endcomment %}
+
+<div class="grid-wrapper-coll">
+  <div class="grid-collection">
+    {% for collection in collections %}
+      {% if collection.image %}
+        <img src="{{ collection | img_url: '350x350' }}" alt="{{ collection.image.alt }}" />
+      {% endif %}
+    {% endfor %}
   </div>
 </div>
-
-{% comment %} {% if section.settings.title != blank %}
-  <h2>{{ section.settings.title | escape }}</h2>
-{% endif %} {% endcomment %}
 
 
 {% comment %} {% for block in section.blocks limit: section.blocks.size %}
