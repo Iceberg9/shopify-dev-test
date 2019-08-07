@@ -1,8 +1,30 @@
-{% if section.settings.title != blank %}
-  <h2>{{ section.settings.title | escape }}</h2>
-{% endif %}
+<div class="grid-wrapper">
+  <div class="grid-title">
+    {{ 'supersale.png' | asset_url | img_tag }}
+  </div>
+</div>
 
-{% for block in section.blocks limit: section.blocks.size %}
+<div class="grid-wrapper-coll">
+  <div class="grid-collection">
+    {{ 'collection--card-3.png' | asset_url | img_tag }}
+    {% comment %} <p class="boots">AWESOME HATS</p> {% endcomment %}
+  </div>
+  <div class="grid-collection">
+    {{ 'collection--card-2.png' | asset_url | img_tag }}
+    {% comment %} <p class="boots">AWESOME BOOTS</p> {% endcomment %}
+  </div>
+  <div class="grid-collection">
+    {{ 'collection--card-1.png' | asset_url | img_tag }}
+    {% comment %} <p class="sunglass">AWESOME SUNGLASS</p> {% endcomment %}
+  </div>
+</div>
+
+{% comment %} {% if section.settings.title != blank %}
+  <h2>{{ section.settings.title | escape }}</h2>
+{% endif %} {% endcomment %}
+
+
+{% comment %} {% for block in section.blocks limit: section.blocks.size %}
   <div {{ block.shopify_attributes }}>
     {%- assign collection = collections[block.settings.collection] -%}
 
@@ -29,7 +51,8 @@
 
 {% if section.blocks.size == 0 %}
   {% include 'no-blocks' %}
-{% endif %}
+{% endif %} {% endcomment %}
+
 
 {% schema %}
   {
