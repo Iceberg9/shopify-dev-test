@@ -13,9 +13,66 @@
         {% include 'icon-cart' %}
       </a>
       <!-- Hamburger Icon -->
-      <div class="icon-ham">
-          {% include 'icon-hamburger' %}
+      <script type="text/javascript">
+        function toggleSidebar(){
+          document.getElementById("sidebar").classList.toggle('active');
+          document.getElementById("toggle-icon").classList.toggle('btn1-hide');
+          document.getElementById("toggle-icon-close").classList.add('btn3');
+        }
+
+        function toggleIcon(){
+          document.getElementById("sidebar").classList.toggle('active');
+          document.getElementById("toggle-icon-close").classList.remove('btn3');
+          document.getElementById("toggle-icon").classList.toggle('btn1-hide');
+        }
+      </script>
+
+      
+
+      <div id="sidebar">
+        <div class="toggle-btn">  
+          <button id="toggle-icon" class="btn1" onclick="toggleSidebar()">
+            {% include 'icon-hamburger' %}
+          </button>
+          <button id="toggle-icon-close" class="btn2" onclick="toggleIcon()">
+            {% include 'icon-close' %}
+          </button>
+        </div>
+        <ul class="underline-small-menu">
+          {% for link in linklists[section.settings.main_linklist].links %}
+            {% if link.links != blank %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title | escape }}</a>
+                <ul>
+                  {% for childlink in link.links %}
+                    {% if childlink.links != blank %}
+                      <li>
+                        <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                        <ul>
+                          {% for grandchildlink in childlink.links %}
+                            <li>
+                              <a href="{{ grandchildlink.url }}">{{ grandchildlink.title | escape }}</a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      </li>
+                    {% else %}
+                      <li class="underline-small">
+                        <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              </li>
+            {% else %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title | escape }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+          </ul>
       </div>
+
       <!-- Search Icon -->
       <div>
           {% include 'icon-search' %}
@@ -54,6 +111,7 @@
 
 </header>
 
+
   {% comment %} <nav role="navigation">
     <ul>
       {% for link in linklists[section.settings.main_linklist].links %}
@@ -87,10 +145,10 @@
           </li>
         {% endif %}
       {% endfor %}
-    </ul>
-  </nav>
-</div> {% endcomment %}
+      </ul>
+  </nav> {% endcomment %}
 
+</div> 
 {% schema %}
   {
     "name": "Header",
