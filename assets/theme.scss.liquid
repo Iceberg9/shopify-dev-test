@@ -152,7 +152,7 @@ $color-success-bg: #000;
 $font-weight-normal: 400;
 $font-weight-bold: 700;
 
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,700,800,900&display=swap');
 
 $font-stack-header: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $font-weight-header: $font-weight-bold;
@@ -1395,6 +1395,7 @@ $color-blankstate-background: rgba($color-body-text, 0.1);
   text-align: center;
   top: 5px;
   bottom: 3px;
+  text-transform: uppercase;
 }
 
 .underline-small::after{
@@ -1428,6 +1429,58 @@ $color-blankstate-background: rgba($color-body-text, 0.1);
   // display: grid;
   // grid-column: 1 / -1;
 }
+
+/*================ Featured Product ================*/
+.grid-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: ". .";
+  justify-content: center;
+  align-content: center;
+  margin-top: 2%;
+}
+
+.product-image{
+  text-align: center;
+  // margin: 0px 30px;
+  margin-left: 30%;
+}
+
+.middle{
+  background-color: #F4F4F4;
+  margin-right: 41%;
+  p{
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+    text-align: center;
+  }
+}
+
+.price{
+  font-weight: bold;
+}
+
+.s1{
+  font-size: 13px;
+}
+
+.btn-cart{
+  background-color: #1B1B1B;
+  color: #FFFFFF;
+  width: 100%;
+  text-transform: uppercase;
+  font-family: 'Raleway', sans-serif;
+  height: 40px;
+}
+
+.desc-btn{
+  margin: 10px 35px;
+  p{
+    text-align: start;
+  }
+}
+
 
 /*================ Giftcard Template ================*/
 .giftcard-qr {

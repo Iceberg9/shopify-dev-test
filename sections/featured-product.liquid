@@ -29,7 +29,7 @@
     </ul>
   {% endif %}
 
-  <h1>{{ product.title | default: onboarding_title }}</h1>
+  <h1>{{ product.title }}</h1>
   {% if product.vendor != blank %}
     <p>{{ product.vendor }}</p>
   {% endif %}
@@ -63,7 +63,7 @@
         {% endfor %}
       {% endunless %}
 
-      <select name="id" class="no-js" data-product-select>
+      {% comment %} <select name="id" class="no-js" data-product-select>
         {% for variant in product.variants %}
           <option
             {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
@@ -105,7 +105,7 @@
               {{ 'products.product.sold_out' | t }}
             {% endif %}
           </span>
-      </button>
+      </button> {% endcomment %}
     </form>
 
   </div>
