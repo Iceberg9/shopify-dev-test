@@ -1,0 +1,178 @@
+<style>
+  {% if section.settings.logo != blank %}
+    .site-header__logo-image {
+      max-width: {{ section.settings.logo_max_width }}px;
+    }
+  {% endif %}
+</style>
+
+<div data-section-id="{{ section.id }}" data-section-type="header-section">
+  <header role="banner" class="site-logo">
+      <!-- Cart Icon -->
+      <a href="/cart">
+        {% include 'icon-cart' %}
+      </a>
+      <!-- Hamburger Icon -->
+      <script type="text/javascript">
+        function toggleSidebar(){
+          document.getElementById("sidebar").classList.toggle('active');
+          document.getElementById("toggle-icon").classList.toggle('btn1-hide');
+          document.getElementById("toggle-icon-close").classList.add('btn3');
+        }
+
+        function toggleIcon(){
+          document.getElementById("sidebar").classList.toggle('active');
+          document.getElementById("toggle-icon-close").classList.remove('btn3');
+          document.getElementById("toggle-icon").classList.toggle('btn1-hide');
+        }
+      </script>
+
+      {% comment %} Hamburger Menu {% endcomment %}
+      <div id="sidebar">
+        <div class="toggle-btn">  
+          <button id="toggle-icon" class="btn1" onclick="toggleSidebar()">
+            {% include 'icon-hamburger' %}
+          </button>
+          <button id="toggle-icon-close" class="btn2" onclick="toggleIcon()">
+            {% include 'icon-close' %}
+          </button>
+        </div>
+        <ul class="underline-small-menu">
+          {% for link in linklists[section.settings.main_linklist].links %}
+            {% if link.links != blank %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title | escape }}</a>
+                <ul>
+                  {% for childlink in link.links %}
+                    {% if childlink.links != blank %}
+                      <li>
+                        <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                        <ul>
+                          {% for grandchildlink in childlink.links %}
+                            <li>
+                              <a href="{{ grandchildlink.url }}">{{ grandchildlink.title | escape }}</a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      </li>
+                    {% else %}
+                      <li class="underline-small">
+                        <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              </li>
+            {% else %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title | escape }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+      </div>
+
+      <!-- Search Icon -->
+      <div>
+          {% include 'icon-search' %}
+      </div>
+
+
+      <a href="/" style="display:block;width:200px" class="{% if section.settings.logo != blank %} site-header__logo-image{% endif %} header_1">
+        {{ 'logo.svg' | asset_url | img_tag }}
+      </a>
+</div>
+
+    {% if shop.customer_accounts_enabled %}
+      <ul>
+        {% if customer %}
+          <li>
+            {% if customer.first_name != blank %}
+              {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
+              {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
+            {% else %}
+              <a href="/account">{{ 'layout.customer.account' | t }}</a>
+            {% endif %}
+          </li>
+          <li>
+            {{ 'layout.customer.log_out' | t | customer_logout_link }}
+          </li>
+        {% else %}
+          <li>
+            {{ 'layout.customer.log_in' | t | customer_login_link }}
+          </li>
+          <li>
+            {{ 'layout.customer.create_account' | t | customer_register_link }}
+          </li>
+        {% endif %}
+      </ul>
+    {% endif %}
+
+</header>
+
+
+  {% comment %} <nav role="navigation">
+    <ul>
+      {% for link in linklists[section.settings.main_linklist].links %}
+        {% if link.links != blank %}
+          <li>
+            <a href="{{ link.url }}">{{ link.title | escape }}</a>
+            <ul>
+              {% for childlink in link.links %}
+                {% if childlink.links != blank %}
+                  <li>
+                    <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                    <ul>
+                      {% for grandchildlink in childlink.links %}
+                        <li>
+                          <a href="{{ grandchildlink.url }}">{{ grandchildlink.title | escape }}</a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                {% else %}
+                  <li>
+                    <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </li>
+        {% else %}
+          <li>
+            <a href="{{ link.url }}">{{ link.title | escape }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+      </ul>
+  </nav> {% endcomment %}
+
+</div> 
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "range",
+        "id": "logo_max_width",
+        "min": 50,
+        "max": 450,
+        "step": 10,
+        "unit": "px",
+        "label": "Custom logo width",
+        "default": 250
+      },
+      {
+        "type": "link_list",
+        "id": "main_linklist",
+        "label": "Menu",
+        "default": "main-menu"
+      }
+    ]
+  }
+{% endschema %}
