@@ -1526,6 +1526,9 @@ $color-blankstate-background: rgba($color-body-text, 0.1);
   // grid-gap: 3px;
   // grid-row-gap: 1px;
   // margin: 1em;
+  img{
+    height: 300px;
+  }
 }
 
 .grid-collection{
@@ -1535,6 +1538,24 @@ $color-blankstate-background: rgba($color-body-text, 0.1);
   font-size: 120px;
   // display: grid;
   // grid-column: 1 / -1;
+}
+
+@media screen and (max-width: 1018px){
+  .grid-wrapper-coll{
+    img{
+      width: 200px;
+      height: 200px;
+    }
+  }
+}
+
+@media screen and (max-width: 718px){
+  .grid-wrapper-coll{
+    img{
+      width: 350px;
+      height: 350px;
+    }
+  }
 }
 
 /*================ Featured Product ================*/
