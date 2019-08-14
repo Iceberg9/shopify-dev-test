@@ -38,6 +38,9 @@ Necesitas hacer un fork de este repositorio para que lo tengas en tu cuenta GitH
 El ambiente que vas a trabajar es el de desarrollo, por lo tanto necesitas correr en tu consola el comando correspondiente de theme kit:
 `theme watch --env=dev`
 
+### Fuente
+El sitio entero debe tener https://fonts.google.com/specimen/Raleway 
+
 ### Iconos
 Todos los iconos deben usarse en formato SVG. El template trae precargado una librería en la carpeta *snippets*.
 
@@ -52,10 +55,12 @@ Para hacer uso de los iconos es necesario usar la etiqueta *include*, por ejempl
 
 
 ### Dynamic Section - Collection list
+- El titulo, así como las colecciones deben responder a los bloques dinamicos del section.
 - Mediante el uso del grid del template, si existen 5 bloques, que la distribución sea: Primera Fila de 3 columnas | Segunda Fila de 2 columnas.
 
 
 ### Dynamic Section - Featured product
+- El titulo, así como el producto completo, debe responder al control del section.
 - Mostrar la imagen destacada `{{ product.featured_image }}` del producto.
 - Crear un componente que permita incrementar / decrementar la cantidad del input tomando en cuenta lo siguiente:
 	- No debe poderse escribir 0
